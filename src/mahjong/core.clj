@@ -15,6 +15,10 @@
   [tile]
   (and (suit? tile) (or (= (:number tile) 1) (= (:number tile) 9))))
 
+(defn pons
+  [hand]
+  [])
+
 (defn -main
   "I don't do a whole lot ... yet."
   [& args]
