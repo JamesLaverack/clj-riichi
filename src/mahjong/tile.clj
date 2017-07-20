@@ -1,14 +1,14 @@
 (ns mahjong.tile)
 
-(defn honor?
-  "Is the given tile an honor?"
-  [tile]
-  (not (contains? tile :suit)))
-
 (defn suit?
   "Is the given tile a suit tile?"
   [tile]
-  (not (honor? tile)))
+  (contains? tile :suit))
+
+(defn honor?
+  "Is the given tile an honor?"
+  [tile]
+  (not (suit? tile)))
 
 (defn terminal?
   "Is the given tile a terminal, that is, a 1 or a 9 suit tile."
