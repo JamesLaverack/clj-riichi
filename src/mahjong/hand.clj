@@ -1,6 +1,12 @@
 (ns mahjong.hand
   (:require [mahjong.tile]))
 
+(defn pair?
+  [hand]
+  (and
+    (= 2 (count hand))
+    (= (nth hand 0) (nth hand 1))))
+
 (defn pons
   "Detect pons (melds of three like tiles) in a hand. This returns a vector of vectors of the pons, plus a vector of
   everything it couldn't match."
