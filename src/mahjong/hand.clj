@@ -2,6 +2,8 @@
   (:require [mahjong.tile]))
 
 (defn pons
+  "Detect pons (melds of three like tiles) in a hand. This returns a vector of vectors of the pons, plus a vector of
+  everything it couldn't match."
   ([hand]
    (pons (first hand) (rest hand) [] []))
   ([tile hand found-melds unmatched-tiles]
