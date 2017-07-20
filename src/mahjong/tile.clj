@@ -11,6 +11,7 @@
   (not (honor? tile)))
 
 (defn terminal?
+  "Is the given tile a terminal, that is, a 1 or a 9 suit tile."
   [tile]
   (and (suit? tile) (or (= (:number tile) 1) (= (:number tile) 9))))
 
