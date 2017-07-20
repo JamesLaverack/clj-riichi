@@ -2,6 +2,8 @@
   (:require [mahjong.tile]))
 
 (defn pair?
+  "Is this hand now just a single pair. We do it as a boolean '?' method rather than pair extraction because, for
+  example, three pairs does not make a valid hand."
   [hand]
   (and
     (= 2 (count hand))
