@@ -1,7 +1,7 @@
-(ns mahjong.hand-test
+(ns mahjong.meld-test
   (:require [clojure.test :refer :all])
   (:require [mahjong.tile :refer :all])
-  (:require [mahjong.hand :refer :all]))
+  (:require [mahjong.meld :refer :all]))
 
 (deftest pon-test
   (testing "That a pon is detected"

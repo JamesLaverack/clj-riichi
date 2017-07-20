@@ -1,4 +1,4 @@
-(ns mahjong.hand
+(ns mahjong.meld
   (:require [mahjong.tile]))
 
 (defn pair?
