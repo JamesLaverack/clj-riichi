@@ -25,9 +25,9 @@
      (list found-melds unmatched-tiles)
      (if (= (get (frequencies unmatched-tiles) tile) 2)
        ; Found a pon, remove the matching tiles from the unmatched tiles, and add the pon set to the found melds
-       (pons (first hand) (rest hand) (conj found-melds (vec (repeat 3 tile))) (vec (remove #(= tile %) unmatched-tiles)))
+       (recur (first hand) (rest hand) (conj found-melds (vec (repeat 3 tile))) (vec (remove #(= tile %) unmatched-tiles)))
        ; Didn't find a pon, add this tile to the unmatched tiles
-       (pons (first hand) (rest hand) found-melds (conj unmatched-tiles tile))
+       (recur (first hand) (rest hand) found-melds (conj unmatched-tiles tile))
        )
      )
     )
