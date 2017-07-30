@@ -4,22 +4,22 @@
 
 (deftest honor-test
   (testing "That 7 Bamboo is not an honor"
-    (is (not (honor? seven-of-bamboo))))
+    (is (not (honor? 🀖))))
   (testing "That the Green Dragon is an honor"
-    (is (honor? green-dragon)))
+    (is (honor? 🀅)))
   (testing "That the North Wind is an honor"
-    (is (honor? north-wind)))
+    (is (honor? 🀃)))
   )
 
 (deftest terminal-test
   (testing "That 7 Bamboo is not a terminal"
-    (is (not (terminal? seven-of-bamboo))))
+    (is (not (terminal? 🀖))))
   (testing "That the Green Dragon is not a terminal"
-    (is (not (terminal? green-dragon))))
+    (is (not (terminal? 🀅))))
   (testing "That the North Wind is not a terminal"
-    (is (not (terminal? north-wind))))
+    (is (not (terminal? 🀃))))
   (testing "That 9 Characters is a terminal"
-    (is (terminal? nine-of-characters)))
+    (is (terminal? 🀏)))
   (testing "That 1 Coins is a terminal"
-    (is (terminal? one-of-coins)))
+    (is (terminal? 🀙)))
   )

@@ -15,6 +15,9 @@
   [tile]
   (and (suit? tile) (or (= (:number tile) 1) (= (:number tile) 9))))
 
+
+;; Define all the tiles in english
+
 (def one-of-characters {:suit :characters :number 1})
 (def two-of-characters {:suit :characters :number 2})
 (def three-of-characters {:suit :characters :number 3})
@@ -53,3 +56,43 @@
 (def east-wind {:wind :east})
 (def south-wind {:wind :south})
 (def west-wind {:wind :west})
+
+;; Define them with unicode too
+(def 🀀 east-wind)
+(def 🀁 south-wind)
+(def 🀂 west-wind)
+(def 🀃 north-wind)
+
+(def 🀄 red-dragon)
+(def 🀅 green-dragon)
+(def 🀆 white-dragon)
+
+(def 🀇 one-of-characters)
+(def 🀈 two-of-characters)
+(def 🀉 three-of-characters)
+(def 🀊 four-of-characters)
+(def 🀋 five-of-characters)
+(def 🀌 six-of-characters)
+(def 🀍 seven-of-characters)
+(def 🀎 eight-of-characters)
+(def 🀏 nine-of-characters)
+
+(def 🀐 one-of-bamboo)
+(def 🀑 two-of-bamboo)
+(def 🀒 three-of-bamboo)
+(def 🀓 four-of-bamboo)
+(def 🀔 five-of-bamboo)
+(def 🀕 six-of-bamboo)
+(def 🀖 seven-of-bamboo)
+(def 🀗 eight-of-bamboo)
+(def 🀘 nine-of-bamboo)
+
+(def 🀙 one-of-coins)
+(def 🀚 two-of-coins)
+(def 🀛 three-of-coins)
+(def 🀜 four-of-coins)
+(def 🀝 five-of-coins)
+(def 🀞 six-of-coins)
+(def 🀟 seven-of-coins)
+(def 🀠 eight-of-coins)
+(def 🀡 nine-of-coins)
