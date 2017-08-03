@@ -15,7 +15,6 @@
   [tile]
   (and (suit? tile) (or (= (:number tile) 1) (= (:number tile) 9))))
 
-
 ;; Define all the tiles in english
 
 (def one-of-characters {:suit :characters :number 1})
@@ -62,10 +61,12 @@
 (def 🀁 south-wind)
 (def 🀂 west-wind)
 (def 🀃 north-wind)
+(def winds [🀀 🀁 🀂 🀃])
 
 (def 🀄 red-dragon)
 (def 🀅 green-dragon)
 (def 🀆 white-dragon)
+(def dragons [🀄 🀅 🀆])
 
 (def 🀇 one-of-characters)
 (def 🀈 two-of-characters)
@@ -76,6 +77,7 @@
 (def 🀍 seven-of-characters)
 (def 🀎 eight-of-characters)
 (def 🀏 nine-of-characters)
+(def characters [🀇 🀈 🀉 🀊 🀋 🀌 🀍 🀎 🀏])
 
 (def 🀐 one-of-bamboo)
 (def 🀑 two-of-bamboo)
@@ -86,6 +88,7 @@
 (def 🀖 seven-of-bamboo)
 (def 🀗 eight-of-bamboo)
 (def 🀘 nine-of-bamboo)
+(def bamboo [🀐 🀑 🀒 🀓 🀔 🀕 🀖 🀗 🀘])
 
 (def 🀙 one-of-coins)
 (def 🀚 two-of-coins)
@@ -96,3 +99,19 @@
 (def 🀟 seven-of-coins)
 (def 🀠 eight-of-coins)
 (def 🀡 nine-of-coins)
+(def coins [🀙 🀚 🀛 🀜 🀝 🀞 🀟 🀠 🀡])
+
+(defn next-from-vector
+  [element vector]
+  (loop [first-element (first vector)
+         element element
+         test-element (first vector)
+         vector (rest vector)]
+    (if (nil? test-element)
+      nil
+      (if (= test-element element)
+        (if (empty? vector)
+          first-element
+          (first vector))
+        (recur first-element element (first vector) (rest vector))))
+    ))
