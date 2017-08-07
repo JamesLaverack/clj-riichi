@@ -5,10 +5,30 @@
   [tile]
   (contains? tile :suit))
 
+(defn bamboo?
+  [tile]
+  (= (:suit tile) :bamboo))
+
+(defn coin?
+  [tile]
+  (= (:suit tile) :coins))
+
+(defn character?
+  [tile]
+  (= (:suit tile) :characters))
+
 (defn honor?
   "Is the given tile an honor?"
   [tile]
   (not (suit? tile)))
+
+(defn dragon?
+  [tile]
+  (contains? tile :dragon))
+
+(defn wind?
+  [tile]
+  (contains? tile :wind))
 
 (defn terminal?
   "Is the given tile a terminal, that is, a 1 or a 9 suit tile."
