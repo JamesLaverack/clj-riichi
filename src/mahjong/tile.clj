@@ -135,3 +135,14 @@
           (first vector))
         (recur first-element element (first vector) (rest vector))))
     ))
+
+(defn next-tile
+  [tile]
+  (next-from-vector tile (cond
+                           (dragon? tile) dragons
+                           (wind? tile) winds
+                           (bamboo? tile) bamboo
+                           (coin? tile) coins
+                           (character? tile) characters
+                           :else []))
+  )

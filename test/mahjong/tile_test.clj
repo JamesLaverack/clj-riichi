@@ -72,3 +72,9 @@
     (is (wind? 🀂)))
   (testing "That the Green Dragon is not a wind"
     (is (not (wind? 🀅)))))
+
+(deftest next-test
+  (testing "That the next tile is given for a suit tile"
+    (is (= (next-tile 🀝) 🀞)))
+  (testing "That the next tile is given for a suit tile wrapping around"
+    (is (= (next-tile 🀘) 🀐))))
