@@ -27,8 +27,42 @@
        ; Found a pon, remove the matching tiles from the unmatched tiles, and add the pon set to the found melds
        (recur (first hand) (rest hand) (conj found-melds (vec (repeat 3 tile))) (vec (remove #(= tile %) unmatched-tiles)))
        ; Didn't find a pon, add this tile to the unmatched tiles
-       (recur (first hand) (rest hand) found-melds (conj unmatched-tiles tile))
-       )
-     )
-    )
-  )
+       (recur (first hand) (rest hand) found-melds (conj unmatched-tiles tile))))))
+
+
+(defn find-run
+  [tile hand]
+  (if
+    (and (mahjong.tile/suit? tile)
+         (> 8 (:number tile))
+         (some #{(mahjong.tile/next-tile tile)} hand)
+         (some #{(mahjong.tile/next-tile (mahjong.tile/next-tile tile))} hand))
+    (list tile
+          (mahjong.tile/next-tile tile)
+          (mahjong.tile/next-tile (mahjong.tile/next-tile tile)))
+    []))
+
+(defn find-runs
+  [tiles]
+  (loop [tile (first tiles) tiles (rest tiles) pons []]
+    (if (<= 3 (count tiles))
+      (recur (first tiles) (rest tiles) (conj pons (vec (find-run tile tiles))))
+      pons)
+    ))
+
+(defn chis
+  "Detect chis (melds of three tiles in sequence) in a hand. This returns a vector of vectors of the chis, plus a vector
+  of everything it couldn't match."
+  [hand]
+  (let [pons (reduce concat (map find-runs (map #(sort-by :number %) (vec (vals (group-by :suit (filter mahjong.tile/suit? hand)))))))]
+    (println "~~~~~~~~~~~~~~")
+    (println (str (vec pons)))
+    (println (str (vec hand)))
+    (println "~~~~~~~~~~~~~~")
+    (list (vec pons) hand)
+    ))
+;
+;(defn remove-all
+;  [removals sequence]
+;
+;  )
