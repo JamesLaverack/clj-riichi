@@ -50,19 +50,26 @@
       pons)
     ))
 
+
+(defn expand-freq
+  "Stolen from https://clojuredocs.org/clojure.core/frequencies#example-58eefd2ee4b01f4add58fe8d"
+  [freqs] (mapcat (fn [[x n]] (repeat n x)) freqs))
+
+(defn remove-chis
+  [melds hand]
+  (expand-freq (merge-with - (frequencies hand) (frequencies (flatten melds))))
+  )
+
 (defn chis
   "Detect chis (melds of three tiles in sequence) in a hand. This returns a vector of vectors of the chis, plus a vector
   of everything it couldn't match."
   [hand]
-  (let [pons (reduce concat (map find-runs (map #(sort-by :number %) (vec (vals (group-by :suit (filter mahjong.tile/suit? hand)))))))]
+  (let [melds (reduce concat (map find-runs (map #(sort-by :number %) (vec (vals (group-by :suit (filter mahjong.tile/suit? hand)))))))]
     (println "~~~~~~~~~~~~~~")
-    (println (str (vec pons)))
+    (println (str (vec melds)))
     (println (str (vec hand)))
     (println "~~~~~~~~~~~~~~")
-    (list (vec pons) hand)
+    (list (vec melds) (remove-chis melds hand))
     ))
-;
-;(defn remove-all
-;  [removals sequence]
-;
-;  )
+
+
