@@ -30,8 +30,8 @@
   (testing "That nil is returned if it can't be found"
     (is (nil? (next-from-vector 🀏 bamboo))))
   (testing "That nil is returned if the vector is empty"
-    (is (nil? (next-from-vector 🀏 []))))
-  )
+    (is (nil? (next-from-vector 🀏 [])))))
+
 
 (deftest bamboo-test
   (testing "That 7 Bamboo is bamboo"

@@ -133,8 +133,8 @@
         (if (empty? vector)
           first-element
           (first vector))
-        (recur first-element element (first vector) (rest vector))))
-    ))
+        (recur first-element element (first vector) (rest vector))))))
+
 
 (defn next-tile
   [tile]
@@ -144,5 +144,5 @@
                            (bamboo? tile) bamboo
                            (coin? tile) coins
                            (character? tile) characters
-                           :else []))
-  )
+                           :else [])))
+
