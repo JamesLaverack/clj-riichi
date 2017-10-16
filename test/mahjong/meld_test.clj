@@ -15,6 +15,15 @@
   (testing "That a chi is detected by itself"
     (let [chi-hand [🀐 🀑 🀒]]
       (is (= (chis chi-hand) [[[🀐 🀑 🀒]] []]))))
+  (testing "That winds cannot form a chi"
+    (let [chi-hand [🀀 🀁 🀂]]
+      (is (= (chis chi-hand) [[] [🀀 🀁 🀂]]))))
+  (testing "That dragons cannot form a chi"
+    (let [chi-hand [🀄 🀅 🀆]]
+      (is (= (chis chi-hand) [[] [🀄 🀅 🀆]]))))
+  (testing "That chis cannot 'wrap' around"
+    (let [chi-hand [🀏 🀇 🀈]]
+      (is (= (chis chi-hand) [[] [🀏 🀇 🀈]]))))
   (testing "That a chi is detected with a duplicated first tile"
     (let [chi-hand [🀐 🀐 🀐 🀑 🀒]]
       (is (= (chis chi-hand) [[[🀐 🀑 🀒]] [🀐 🀐]]))))
