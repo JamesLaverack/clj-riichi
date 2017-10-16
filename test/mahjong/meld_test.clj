@@ -11,7 +11,16 @@
 (deftest chi-test
   (testing "That a chi is detected"
     (let [chi-hand [🀃 🀀 🀑 🀂 🀂 🀂 🀊 🀋 🀌 🀍 🀠 🀑 🀐 🀒]]
-      (is (= (chis chi-hand) [[[🀐 🀑 🀒] [🀊 🀋 🀌]] [🀃 🀀 🀂 🀂 🀂 🀍 🀠 🀑]]))))
+      (is (= (chis chi-hand) [[[🀊 🀋 🀌] [🀐 🀑 🀒]] [🀃 🀀 🀂 🀂 🀂 🀍 🀠 🀑]]))))
+  (testing "That a chi is detected by itself"
+    (let [chi-hand [🀐 🀑 🀒]]
+      (is (= (chis chi-hand) [[[🀐 🀑 🀒]] []]))))
+  (testing "That a chi is detected with a duplicated first tile"
+    (let [chi-hand [🀐 🀐 🀐 🀑 🀒]]
+      (is (= (chis chi-hand) [[[🀐 🀑 🀒]] [🀐 🀐]]))))
+  (testing "That a triple duplicated chi is detected"
+    (let [chi-hand [🀊 🀋 🀌 🀊 🀋 🀌 🀊 🀋 🀌]]
+      (is (= (chis chi-hand) [[[🀊 🀋 🀌] [🀊 🀋 🀌] [🀊 🀋 🀌]] []]))))
   (testing "That a chi is detected with duplicates of the middle tile"
     (let [chi-hand [🀉 🀊 🀊 🀋]]
       (is (= (chis chi-hand) [[[🀉 🀊 🀋]] [🀊]])))))

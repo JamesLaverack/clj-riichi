@@ -23,31 +23,12 @@
        ; Didn't find a pon, add this tile to the unmatched tiles
        (recur (first hand) (rest hand) found-melds (conj unmatched-tiles tile))))))
 
-(defn find-run
-  [tile hand]
-  (if
-    (and (mahjong.tile/suit? tile)
-         (> 8 (:number tile))
-         (some #{(mahjong.tile/next-tile tile)} hand)
-         (some #{(mahjong.tile/next-tile (mahjong.tile/next-tile tile))} hand))
-    (list tile
-          (mahjong.tile/next-tile tile)
-          (mahjong.tile/next-tile (mahjong.tile/next-tile tile)))
-    []))
-
-(defn find-runs
-  [tiles]
-  (loop [tile (first tiles) tiles (rest tiles) pons []]
-    (if (<= 3 (count tiles))
-      (recur (first tiles) (rest tiles) (conj pons (vec (find-run tile tiles))))
-      pons)))
-
 (defn remove-first
   [to-remove collection]
   (loop
-    [prev []
-     element (first collection)
-     remaining (rest collection)]
+      [prev []
+       element (first collection)
+       remaining (rest collection)]
     (if (nil? element)
       ;; Failure to find, just return 'prev' which is the seq as we found it
       prev
@@ -61,16 +42,38 @@
 (defn remove-all
   [removals collection]
   (loop
-    [to-remove (first removals)
-     remaining-removals (rest removals)
-     collection collection]
+      [to-remove (first removals)
+       remaining-removals (rest removals)
+       collection collection]
     (if (nil? to-remove)
       collection
       (recur (first remaining-removals) (rest remaining-removals) (remove-first to-remove collection)))))
 
+(defn find-run
+  [tile hand]
+  (if
+    (and (mahjong.tile/suit? tile)
+         (> 8 (:number tile))
+         (some #{(mahjong.tile/next-tile tile)} hand)
+         (some #{(mahjong.tile/next-tile (mahjong.tile/next-tile tile))} hand))
+    (list tile
+          (mahjong.tile/next-tile tile)
+          (mahjong.tile/next-tile (mahjong.tile/next-tile tile)))
+    nil))
+
 (defn chis
-  "Detect chis (melds of three tiles in sequence) in a hand. This returns a vector of vectors of the chis, plus a vector
-  of everything it couldn't match."
-  [hand]
-  (let [melds (reduce concat (map find-runs (map #(sort-by :number %) (vec (vals (group-by :suit (filter mahjong.tile/suit? hand)))))))]
-    (list (vec melds) (remove-all (reduce concat melds) hand))))
+  ([hand]
+   (chis hand 0 []))
+  ([hand idx chis]
+  (if (>= idx (count hand))
+    ;; We've run out of tiles - return the chis we've found
+    (list chis hand)
+    ;; continue with another tile
+    (let [tile (nth hand idx)
+          run (find-run tile hand)]
+      (if (nil? run)
+        ;; Failed to find anything
+        (recur hand (+ 1 idx) chis)
+        ;; Found a new chi, start from the beginning of the new seq
+        (recur (remove-all run hand) 0 (conj chis run))
+)))))
