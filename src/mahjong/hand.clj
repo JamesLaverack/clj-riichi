@@ -25,7 +25,7 @@
     (loop [pivot (first (keys find-freq))
            remainder (rest (keys find-freq))]
       (if (nil? pivot)
-        ;; Checked evertying, success
+        ;; Checked everything, success
         true
         ;; Check the pivot key
         (if (<=
