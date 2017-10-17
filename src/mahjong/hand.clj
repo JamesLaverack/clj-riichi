@@ -1,5 +1,6 @@
 (ns mahjong.hand
-  (:require [mahjong.meld]))
+  (:require [mahjong.meld])
+  (:require [mahjong.tile]))
 
 (defn unmatched-tiles
   [grouped-hand]
