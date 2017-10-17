@@ -15,7 +15,7 @@
     ;; This is a 'non-standard' hand that doesn't confirm to the usual 'four melds and a pair' rule
     (let [hand [🀅 🀅 🀙 🀙 🀜 🀜 🀗 🀗 🀊 🀊 🀆 🀆 🀌 🀌]]
       (is (valid? hand))))
-  (testing "Thirteen Oprhans"
+  (testing "Thirteen Orphans"
     ;; This is a 'non-standard' hand that doesn't confirm to the usual 'four melds and a pair' rule
     (let [hand [🀀 🀁 🀂 🀃 🀄 🀅 🀆 🀇 🀏 🀐 🀘 🀙 🀡 🀡]]
       (is (valid? hand))))
