@@ -16,7 +16,7 @@
    (pons (first hand) (rest hand) [] []))
   ([tile hand found-melds unmatched-tiles]
    (if (empty? tile)
-     (list found-melds unmatched-tiles)
+     {:melds found-melds :unmatched unmatched-tiles}
      (if (= (get (frequencies unmatched-tiles) tile) 2)
        ; Found a pon, remove the matching tiles from the unmatched tiles, and add the pon set to the found melds
        (recur (first hand) (rest hand) (conj found-melds (vec (repeat 3 tile))) (vec (remove #(= tile %) unmatched-tiles)))
@@ -67,7 +67,7 @@
   ([hand idx chis]
   (if (>= idx (count hand))
     ;; We've run out of tiles - return the chis we've found
-    (list chis hand)
+    {:melds chis :unmatched hand}
     ;; continue with another tile
     (let [tile (nth hand idx)
           run (find-run tile hand)]

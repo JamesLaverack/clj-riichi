@@ -2,10 +2,6 @@
   (:require [mahjong.meld :as meld])
   (:require [mahjong.tile :as tile]))
 
-(defn unmatched-tiles
-  [grouped-hand]
-  (nth grouped-hand 1))
-
 (defn seven-sisters?
   [hand]
   (let [freqs (frequencies hand)]
@@ -51,7 +47,7 @@
   [hand]
   (and
     (= 14 (count hand))
-    (meld/pair? (unmatched-tiles (meld/chis (unmatched-tiles (meld/pons hand)))))))
+    (meld/pair? (:unmatched (meld/chis (:unmatched (meld/pons hand)))))))
 
 (defn valid?
   [hand]
