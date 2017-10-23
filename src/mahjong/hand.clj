@@ -1,6 +1,6 @@
 (ns mahjong.hand
-  (:require [mahjong.meld])
-  (:require [mahjong.tile]))
+  (:require [mahjong.meld :as meld])
+  (:require [mahjong.tile :as tile]))
 
 (defn unmatched-tiles
   [grouped-hand]
@@ -42,8 +42,8 @@
 (defn thirteen-orphans?
   [hand]
   (and
-    (contains-all? hand mahjong.tile/honors)
-    (contains-all? hand mahjong.tile/terminals)
+    (contains-all? hand tile/honors)
+    (contains-all? hand tile/terminals)
     (contains-pair? hand)
     ))
 
@@ -51,7 +51,7 @@
   [hand]
   (and
     (= 14 (count hand))
-    (mahjong.meld/pair? (unmatched-tiles (mahjong.meld/chis (unmatched-tiles (mahjong.meld/pons hand)))))))
+    (meld/pair? (unmatched-tiles (meld/chis (unmatched-tiles (meld/pons hand)))))))
 
 (defn valid?
   [hand]

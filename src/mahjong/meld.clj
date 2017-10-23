@@ -1,5 +1,5 @@
 (ns mahjong.meld
-  (:require [mahjong.tile]))
+  (:require [mahjong.tile :as tile]))
 
 (defn pair?
   "Is this hand now just a single pair. We do it as a boolean '?' method rather than pair extraction because, for
@@ -52,13 +52,13 @@
 (defn find-run
   [tile hand]
   (if
-    (and (mahjong.tile/suit? tile)
+    (and (tile/suit? tile)
          (> 8 (:number tile))
-         (some #{(mahjong.tile/next-tile tile)} hand)
-         (some #{(mahjong.tile/next-tile (mahjong.tile/next-tile tile))} hand))
+         (some #{(tile/next-tile tile)} hand)
+         (some #{(tile/next-tile (tile/next-tile tile))} hand))
     (list tile
-          (mahjong.tile/next-tile tile)
-          (mahjong.tile/next-tile (mahjong.tile/next-tile tile)))
+          (tile/next-tile tile)
+          (tile/next-tile (tile/next-tile tile)))
     nil))
 
 (defn chis
@@ -75,5 +75,4 @@
         ;; Failed to find anything
         (recur hand (+ 1 idx) chis)
         ;; Found a new chi, start from the beginning of the new seq
-        (recur (remove-all run hand) 0 (conj chis run))
-)))))
+        (recur (remove-all run hand) 0 (conj chis run)))))))
