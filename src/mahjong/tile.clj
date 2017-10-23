@@ -141,7 +141,6 @@
           (first vector))
         (recur first-element element (first vector) (rest vector))))))
 
-
 (defn next-tile
   [tile]
   (next-from-vector tile (cond

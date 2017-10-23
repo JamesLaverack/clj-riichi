@@ -30,18 +30,14 @@
           ;; Found enough of this key, continue to search
           (recur (first remainder) (rest remainder))
           ;; Didn't find enough of this key, fail out
-          false
-          )
-        )
-      )))
+          false)))))
 
 (defn thirteen-orphans?
   [hand]
   (and
     (contains-all? hand tile/honors)
     (contains-all? hand tile/terminals)
-    (contains-pair? hand)
-    ))
+    (contains-pair? hand)))
 
 (defn standard-hand?
   [hand]

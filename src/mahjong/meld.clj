@@ -26,9 +26,9 @@
 (defn remove-first
   [to-remove collection]
   (loop
-      [prev []
-       element (first collection)
-       remaining (rest collection)]
+    [prev []
+     element (first collection)
+     remaining (rest collection)]
     (if (nil? element)
       ;; Failure to find, just return 'prev' which is the seq as we found it
       prev
@@ -42,9 +42,9 @@
 (defn remove-all
   [removals collection]
   (loop
-      [to-remove (first removals)
-       remaining-removals (rest removals)
-       collection collection]
+    [to-remove (first removals)
+     remaining-removals (rest removals)
+     collection collection]
     (if (nil? to-remove)
       collection
       (recur (first remaining-removals) (rest remaining-removals) (remove-first to-remove collection)))))
@@ -65,14 +65,14 @@
   ([hand]
    (chis hand 0 []))
   ([hand idx chis]
-  (if (>= idx (count hand))
-    ;; We've run out of tiles - return the chis we've found
-    {:melds chis :unmatched hand}
-    ;; continue with another tile
-    (let [tile (nth hand idx)
-          run (find-run tile hand)]
-      (if (nil? run)
-        ;; Failed to find anything
-        (recur hand (+ 1 idx) chis)
-        ;; Found a new chi, start from the beginning of the new seq
-        (recur (remove-all run hand) 0 (conj chis run)))))))
+   (if (>= idx (count hand))
+     ;; We've run out of tiles - return the chis we've found
+     {:melds chis :unmatched hand}
+     ;; continue with another tile
+     (let [tile (nth hand idx)
+           run (find-run tile hand)]
+       (if (nil? run)
+         ;; Failed to find anything
+         (recur hand (+ 1 idx) chis)
+         ;; Found a new chi, start from the beginning of the new seq
+         (recur (remove-all run hand) 0 (conj chis run)))))))
