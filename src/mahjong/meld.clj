@@ -76,3 +76,16 @@
          (recur hand (+ 1 idx) chis)
          ;; Found a new chi, start from the beginning of the new seq
          (recur (remove-all run hand) 0 (conj chis run)))))))
+
+(defn declared-meld-tiles
+  "Given a declared meld, give a vector of the tiles"
+  [meld]
+  (if (contains? :taken meld)
+    (conj (:provided meld) (:taken meld))
+    (:provided meld)))
+
+(defn closed?
+  "Some types of meld, namely Kans (four of a kind), can be declared as closed."
+  [declared-meld]
+  ;; If it wasn't taken *from* someone then it's a closed meld
+  (not (contains? declared-meld :from)))

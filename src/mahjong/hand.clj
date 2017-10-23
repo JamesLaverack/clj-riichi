@@ -43,7 +43,7 @@
 (defn standard-hand?
   [hand]
   (and
-    (= 14 (count hand))
+    (= 14 (+ (count (:hidden hand)) (* 3 (count (:declared hand)))))
     (meld/pair? (:unmatched (meld/chis (:unmatched (meld/pons (:hidden hand))))))))
 
 (defn valid?
@@ -52,3 +52,9 @@
     (standard-hand? hand)
     (seven-sisters? (:hidden hand))
     (thirteen-orphans? (:hidden hand))))
+
+(defn closed?
+  "Is the hand closed?"
+  [hand]
+  ;; It's only closed if every declared meld is closed, or there are no declared melds
+  (every? meld/closed? (:declared hand)))
