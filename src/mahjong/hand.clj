@@ -35,6 +35,7 @@
 (defn thirteen-orphans?
   [hand]
   (and
+    (= 14 (count hand))
     (contains-all? hand tile/honors)
     (contains-all? hand tile/terminals)
     (contains-pair? hand)))
@@ -43,11 +44,11 @@
   [hand]
   (and
     (= 14 (count hand))
-    (meld/pair? (:unmatched (meld/chis (:unmatched (meld/pons hand)))))))
+    (meld/pair? (:unmatched (meld/chis (:unmatched (meld/pons (:hidden hand))))))))
 
 (defn valid?
   [hand]
   (or
     (standard-hand? hand)
-    (seven-sisters? hand)
-    (thirteen-orphans? hand)))
+    (seven-sisters? (:hidden hand))
+    (thirteen-orphans? (:hidden hand))))
