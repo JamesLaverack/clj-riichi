@@ -1,3 +1,3 @@
-# Riichi Mahjong
+# Rīchi Mahjong
 
-Riichi Mahjong simulator, written in Clojure.
+Rīchi Mahjong simulator, written in Clojure.
