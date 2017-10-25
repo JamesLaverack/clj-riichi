@@ -40,10 +40,15 @@
     (contains-all? hand tile/terminals)
     (contains-pair? hand)))
 
+(defn effective-size
+  "Count the effective size of the hand. All exposed melds are counted as 3 tiles."
+  [hand]
+  (+ (count (:hidden hand)) (* 3 (count (:declared hand)))))
+
 (defn standard-hand?
   [hand]
   (and
-    (= 14 (+ (count (:hidden hand)) (* 3 (count (:declared hand)))))
+    (= 14 (effective-size hand))
     (meld/pair? (:unmatched (meld/chis (:unmatched (meld/pons (:hidden hand))))))))
 
 (defn valid?
