@@ -1,7 +1,7 @@
-(ns mahjong.hand-test
+(ns riichi.hand-test
   (:require [clojure.test :refer :all])
-  (:require [mahjong.tile :refer :all])
-  (:require [mahjong.hand :refer :all]))
+  (:require [riichi.tile :refer :all])
+  (:require [riichi.hand :refer :all]))
 
 (deftest hand-validity
   (testing "That an invalid hand is detected"

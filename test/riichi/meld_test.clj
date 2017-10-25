@@ -1,7 +1,7 @@
-(ns mahjong.meld-test
+(ns riichi.meld-test
   (:require [clojure.test :refer :all])
-  (:require [mahjong.tile :refer :all])
-  (:require [mahjong.meld :refer :all]))
+  (:require [riichi.tile :refer :all])
+  (:require [riichi.meld :refer :all]))
 
 (deftest pon-test
   (testing "That a pon is detected"

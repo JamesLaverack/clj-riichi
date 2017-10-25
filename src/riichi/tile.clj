@@ -1,4 +1,4 @@
-(ns mahjong.tile)
+(ns riichi.tile)
 
 (defn suit?
   "Is the given tile a suit tile?"

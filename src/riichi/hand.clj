@@ -1,6 +1,6 @@
-(ns mahjong.hand
-  (:require [mahjong.meld :as meld])
-  (:require [mahjong.tile :as tile]))
+(ns riichi.hand
+  (:require [riichi.meld :as meld])
+  (:require [riichi.tile :as tile]))
 
 (defn seven-sisters?
   [hand]

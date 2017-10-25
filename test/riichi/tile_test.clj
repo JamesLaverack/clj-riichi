@@ -1,6 +1,6 @@
-(ns mahjong.tile-test
+(ns riichi.tile-test
   (:require [clojure.test :refer :all]
-            [mahjong.tile :refer :all]))
+            [riichi.tile :refer :all]))
 
 (deftest honor-test
   (testing "That 7 Bamboo is not an honor"

@@ -1,5 +1,5 @@
-(ns mahjong.meld
-  (:require [mahjong.tile :as tile]))
+(ns riichi.meld
+  (:require [riichi.tile :as tile]))
 
 (defn pair?
   "Is this hand now just a single pair. We do it as a boolean '?' method rather than pair extraction because, for
