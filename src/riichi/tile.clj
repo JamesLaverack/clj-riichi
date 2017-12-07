@@ -121,11 +121,13 @@
 (def 🀡 nine-of-coins)
 (def coins [🀙 🀚 🀛 🀜 🀝 🀞 🀟 🀠 🀡])
 
-(def all-tiles (concat coins characters bamboo dragons winds))
+(def all (concat coins characters bamboo dragons winds))
 
-(def honors (filter honor? all-tiles))
+(def complete-set (reduce concat (repeat 4 all)))
 
-(def terminals (filter terminal? all-tiles))
+(def honors (filter honor? all))
+
+(def terminals (filter terminal? all))
 
 (defn next-from-vector
   [element vector]
